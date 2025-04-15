@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Plant Health Bot</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="plant-theme.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <!-- Header Section -->
+  <header>
+    <div class="header-container">
+      <div class="logo">
+        <img src="plant-logo-green.svg" alt="Plant Health Bot Logo" class="app-logo">
+        <h1 class="centered-title">Flora <span style="font-weight:300;font-size:0.8em;">Plant Health Assistant</span></h1>
+      </div>
+      <div class="auth-buttons">
+        <button id="scheduler-btn" class="scheduler-btn" onclick="showSchedulerModal()">
+          <i class="fas fa-calendar-alt"></i> 
+          <span id="task-counter" class="task-counter" style="display: none;">0</span>
+        </button>
+        <div id="user-menu" style="display: none;">
+          <button id="username-btn" class="username-btn">
+            <span id="welcome-text"></span>
+            <span class="dropdown-arrow">▼</span>
+          </button>
+          <div id="dropdown-menu" class="dropdown-menu">
+            <button onclick="logoutUser()">Logout</button>
+          </div>
+        </div>
+        <button id="login-btn" class="auth-btn">Sign up</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Authentication Modal (Hidden by Default) -->
+  <div id="auth-modal" class="modal" style="display: none;">
+    <div class="modal-content">
+      <span id="modal-close" class="modal-close">&times;</span>
+      <div class="tab-header">
+        <button id="tab-signup" class="active">Signup</button>
+        <button id="tab-login">Login</button>
+      </div>
+      <!-- Signup Form -->
+      <div id="signup-section" class="auth-section">
+        <h3>Signup</h3>
+        <input type="text" id="signup-username" placeholder="Username">
+        <input type="email" id="signup-email" placeholder="Email">
+        <input type="password" id="signup-password" placeholder="Password">
+        <button id="signup-submit">Signup</button>
+        <hr>
+        <button id="google-signup-btn">Signup with Google</button>
+      </div>
+      <!-- Login Form -->
+      <div id="login-section" class="auth-section" style="display: none;">
+        <h3>Login</h3>
+        <input type="email" id="login-email" placeholder="Email">
+        <input type="password" id="login-password" placeholder="Password">
+        <button id="login-submit">Login</button>
+        <hr>
+        <button id="google-login-btn">Login with Google</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Container: Sidebar + Chat Panel -->
+  <div class="main-container">
+    <!-- History Panel (Sidebar) -->
+    <div class="history-panel">
+      <div class="history-header">
+        <h2>Chat History</h2>
+        <button id="new-chat-btn"><i class="fas fa-plus"></i> New Chat</button>
+      </div>
+      <ul id="history-list">
+        <!-- Chat history items will be added here -->
+      </ul>
+    </div>
+    
+    <!-- Chat Panel -->
+    <section class="chat-section">
+      <div id="welcome-screen">
+        <h1>Welcome to Flora</h1>
+        <p>Your AI Plant Health Assistant</p>
+        <div class="welcome-icons">
+          <i class="fas fa-seedling" style="font-size: 2.5rem; color: var(--leaf-green); margin: 15px;"></i>
+          <i class="fas fa-leaf" style="font-size: 2.5rem; color: var(--light-green); margin: 15px;"></i>
+          <i class="fas fa-tint" style="font-size: 2.5rem; color: var(--water-blue); margin: 15px;"></i>
+        </div>
+        <p>How can I help with your plants today?</p>
+      </div>
+      
+      <div id="chat-box" class="chat-box">
+        <!-- Chat messages and placeholder appear here -->
+      </div>
+      
+      <div class="input-area">
+        <div class="input-container">
+          <input type="text" id="user-input" placeholder="Ask Flora about plant health..." autocomplete="off" />
+          <button id="send-btn" onclick="sendMessage()"><i class="fas fa-paper-plane"></i></button>
+        </div>
+        
+        <div class="feature-buttons-container">
+          <button class="feature-btn" id="plant-care-btn"><i class="fas fa-seedling"></i> Plant Care</button>
+          <button class="feature-btn" id="disease-identification-btn"><i class="fas fa-bug"></i> Disease ID</button>
+          <button class="feature-btn" id="watering-schedule-btn"><i class="fas fa-tint"></i> Watering Tips</button>
+          <button class="feature-btn" id="fertilization-btn"><i class="fas fa-leaf"></i> Fertilization</button>
+          <button class="feature-btn" id="light-requirements-btn"><i class="fas fa-sun"></i> Light Guide</button>
+          <button class="feature-btn" id="seasonal-care-btn"><i class="fas fa-cloud-sun"></i> Seasonal Care</button>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- Include Scheduler Modal -->
+  <div id="scheduler-modal" class="modal" style="display: none;">
+    <div class="modal-content scheduler-modal-content">
+      <span id="scheduler-close" class="modal-close" onclick="closeSchedulerModal()">&times;</span>
+      <h2>Your Plant Care Schedule</h2>
+      
+      <!-- Add New Task Form -->
+      <div class="add-task-form">
+        <h3>Add New Task</h3>
+        <div class="task-form-inputs">
+          <input type="text" id="new-task-input" placeholder="Enter plant care task...">
+          <input type="date" id="new-task-date">
+          <input type="time" id="new-task-time" value="09:00">
+          <button onclick="addTaskFromForm()">Add Task</button>
+        </div>
+      </div>
+      
+      <!-- Tasks List -->
+      <div class="scheduled-tasks-container">
+        <h3>Scheduled Tasks</h3>
+        <div id="scheduled-tasks-list" class="tasks-list">
+          <!-- Tasks will be added here dynamically -->
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+  <script src="scheduler.js"></script>
+  <link rel="stylesheet" href="scheduler.css">
+</body>
+</html>

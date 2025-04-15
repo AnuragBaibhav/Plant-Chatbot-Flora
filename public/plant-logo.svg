@@ -1,0 +1,18 @@
+<svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+  <!-- Plant Stem -->
+  <path d="M12 22V12" stroke="#ffffff" stroke-width="1.5"/>
+  
+  <!-- Leaves -->
+  <path d="M12 12C12 8 15 6 18 6C18 9 16 12 12 12Z" fill="#ffffff"/>
+  <path d="M12 12C12 8 9 6 6 6C6 9 8 12 12 12Z" fill="#ffffff"/>
+  
+  <!-- Small Leaves -->
+  <path d="M12 16C12 14 14 13 16 13C16 15 14 16 12 16Z" fill="#ffffff" opacity="0.8"/>
+  <path d="M12 16C12 14 10 13 8 13C8 15 10 16 12 16Z" fill="#ffffff" opacity="0.8"/>
+  
+  <!-- Water Droplet -->
+  <path d="M12 19C13.1046 19 14 18.1046 14 17C14 15.8954 12 14 12 14C12 14 10 15.8954 10 17C10 18.1046 10.8954 19 12 19Z" fill="#ffffff" opacity="0.9"/>
+  
+  <!-- Circular Background -->
+  <circle cx="12" cy="12" r="10" fill="none" stroke="#ffffff" stroke-width="1" opacity="0.3"/>
+</svg>

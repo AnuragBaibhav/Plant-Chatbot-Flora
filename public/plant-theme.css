@@ -1,0 +1,395 @@
+/* Plant Health Chatbot Theme */
+:root {
+  --primary-green: #2e7d32;
+  --light-green: #4caf50;
+  --dark-green: #1b5e20;
+  --leaf-green: #81c784;
+  --accent-green: #00c853;
+  --soil-brown: #795548;
+  --light-soil: #a1887f;
+  --cream: #f5f5dc;
+  --light-cream: #fffff0;
+  --water-blue: #29b6f6;
+  --text-on-dark: #ffffff;
+  --text-on-light: #212121;
+  --background-dark: #0a1f0a;
+  --background-light: #e8f5e9;
+  --card-bg: #1b2e1b;
+  --border-color: #388e3c;
+  --hover-color: #43a047;
+}
+
+/* Global Styles */
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: var(--background-dark);
+  color: var(--text-on-dark);
+  line-height: 1.6;
+  height: 100vh;
+  overflow: hidden;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--dark-green);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--light-green);
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--accent-green);
+}
+
+/* Firefox scrollbar */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--light-green) var(--dark-green);
+}
+
+/* Header */
+header {
+  background: var(--dark-green);
+  color: var(--text-on-dark);
+  padding: 12px 20px;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.header-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 5px 20px;
+  height: 60px;
+}
+
+.logo {
+  text-align: center;
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  position: relative;
+}
+
+.app-logo {
+  width: 32px;
+  height: 32px;
+  margin-right: 5px;
+}
+
+.logo h1 {
+  font-size: 24px;
+  margin: 0;
+  text-align: center;
+  font-weight: 600;
+  color: var(--text-on-dark);
+  position: relative;
+}
+
+/* Auth Buttons */
+.auth-buttons button {
+  background: var(--primary-green);
+  color: var(--text-on-dark);
+  border: 1px solid var(--border-color);
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 14px;
+  transition: background-color 0.3s;
+}
+
+.auth-buttons button:hover {
+  background: var(--hover-color);
+}
+
+/* Main Layout */
+.main-container {
+  display: flex;
+  height: calc(100vh - 70px);
+}
+
+/* History Panel (Sidebar) */
+.history-panel {
+  width: 25%;
+  background: var(--card-bg);
+  border-right: 1px solid var(--border-color);
+  padding: 20px;
+  overflow-y: auto;
+}
+
+.history-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.history-header h2 {
+  color: var(--text-on-dark);
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.history-header button {
+  background: var(--primary-green);
+  color: var(--text-on-dark);
+  border: none;
+  padding: 8px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  transition: background-color 0.3s;
+}
+
+.history-header button:hover {
+  background: var(--hover-color);
+}
+
+.chat-session-item {
+  padding: 12px;
+  border-radius: 6px;
+  margin-bottom: 8px;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: background 0.2s;
+  border-left: 3px solid transparent;
+}
+
+.chat-session-item:hover {
+  background: var(--dark-green);
+  border-left: 3px solid var(--leaf-green);
+}
+
+/* Chat Messages */
+.user-msg, .bot-msg {
+  margin-bottom: 20px;
+  padding: 15px;
+  border-radius: 18px;
+  max-width: 80%;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+  animation: fadeIn 0.3s ease-out forwards;
+}
+
+.user-msg {
+  align-self: flex-end;
+  background-color: var(--primary-green);
+  color: var(--text-on-dark);
+  border-bottom-right-radius: 4px;
+  margin-left: auto;
+}
+
+.bot-msg {
+  align-self: flex-start;
+  background-color: var(--card-bg);
+  color: var(--text-on-dark);
+  border-bottom-left-radius: 4px;
+  margin-right: auto;
+  border-left: 3px solid var(--leaf-green);
+}
+
+/* Chat Section */
+.chat-section {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  overflow: hidden;
+  background-color: var(--background-dark);
+  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><path d="M30,10 Q50,0 70,10 T90,30 Q100,50 90,70 T70,90 Q50,100 30,90 T10,70 Q0,50 10,30 T30,10Z" fill="%232e7d32" opacity="0.05"/></svg>');
+  background-size: 300px;
+  background-repeat: repeat;
+}
+
+/* Welcome Screen */
+#welcome-screen {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  height: 100%;
+  padding: 20px;
+  animation: fadeIn 0.5s ease-out forwards;
+}
+
+#welcome-screen h1 {
+  font-size: 2.5rem;
+  margin-bottom: 16px;
+  font-weight: 600;
+  background: linear-gradient(90deg, var(--light-green), var(--accent-green));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+#welcome-screen p {
+  font-size: 1.3rem;
+  color: var(--leaf-green);
+  max-width: 600px;
+  line-height: 1.5;
+}
+
+/* Input Area */
+.input-area {
+  margin-top: 20px;
+  padding-top: 10px;
+  border-top: 1px solid var(--border-color);
+}
+
+.input-container {
+  display: flex;
+  background-color: var(--card-bg);
+  border-radius: 24px;
+  padding: 10px 15px;
+  margin-bottom: 15px;
+  border: 1px solid var(--border-color);
+}
+
+#user-input {
+  flex: 1;
+  border: none;
+  background: transparent;
+  padding: 8px;
+  color: var(--text-on-dark);
+  font-size: 16px;
+  outline: none;
+}
+
+#user-input::placeholder {
+  color: var(--leaf-green);
+}
+
+#send-btn {
+  background: none;
+  border: none;
+  color: var(--accent-green);
+  cursor: pointer;
+  font-size: 18px;
+  padding: 0 10px;
+  transition: color 0.3s ease;
+}
+
+#send-btn:hover {
+  color: var(--light-green);
+}
+
+/* Feature Buttons */
+.feature-buttons-container {
+  display: flex;
+  justify-content: space-between;
+  gap: 15px;
+  flex-wrap: wrap;
+  margin-top: 15px;
+  padding: 0 10px;
+}
+
+.feature-btn {
+  background: var(--card-bg);
+  border: 1px solid var(--border-color);
+  color: var(--text-on-dark);
+  padding: 8px 15px;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  transition: all 0.2s;
+}
+
+.feature-btn:hover {
+  background: var(--primary-green);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+.feature-btn i {
+  color: var(--leaf-green);
+}
+
+.feature-btn:hover i {
+  color: var(--text-on-dark);
+}
+
+/* Modal Styling */
+.modal-content {
+  background: var(--card-bg);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+}
+
+.tab-header button.active {
+  color: var(--accent-green);
+  border-bottom: 2px solid var(--accent-green);
+}
+
+.auth-section button {
+  background: var(--primary-green);
+}
+
+.auth-section button:hover {
+  background: var(--hover-color);
+}
+
+/* Scheduler Styling */
+.scheduler-modal-content {
+  background: var(--card-bg);
+  border: 1px solid var(--border-color);
+}
+
+.add-task-form {
+  background: var(--dark-green);
+}
+
+.task-form-inputs button {
+  background: var(--primary-green);
+}
+
+.task-form-inputs button:hover {
+  background: var(--hover-color);
+}
+
+.scheduled-tasks-container {
+  background: var(--dark-green);
+}
+
+.task-date-section h3 {
+  color: var(--leaf-green);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .main-container {
+    flex-direction: column;
+  }
+  
+  .history-panel {
+    width: 100%;
+    height: 30%;
+    border-right: none;
+    border-bottom: 1px solid var(--border-color);
+  }
+  
+  .chat-section {
+    height: 70%;
+  }
+}
